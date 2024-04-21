@@ -7,20 +7,8 @@ public class Test {
     public static void main(String[] args) {
 
         //Test zum anlegen von Dokumenten
-        CouchDbProperties properties = new CouchDbProperties()
-                //DBName anpassen und username und password
-                .setDbName("nicotest")
-                .setCreateDbIfNotExist(true)
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(5984)
-                .setUsername("HechtJ")
-                .setPassword("146069")
-                .setMaxConnections(100)
-                .setConnectionTimeout(0);
 
-        // Erstelle einen CouchDB-Client
-        CouchDbClient dbClient = new CouchDbClient(properties);
+        DBConnect db = new DBConnect("test");
 
 
         //Hier wird das json mal generiert
@@ -31,7 +19,7 @@ public class Test {
 
 
         // Füge das Dokument zur Datenbank hinzu
-        Response response = dbClient.save(jsonObject);
+        Response response = db.getClient().save(jsonObject);
 
         // Überprüfe die Antwort
         if (response.getError() == null) {
@@ -43,7 +31,7 @@ public class Test {
 
 
         // Schließe die Verbindung zum Client
-        dbClient.shutdown();
+        db.getClient().shutdown();
 
 
 
