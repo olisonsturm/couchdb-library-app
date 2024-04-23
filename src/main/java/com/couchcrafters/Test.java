@@ -1,12 +1,12 @@
+package com.couchcrafters;
+
 import org.json.JSONObject;
-import org.lightcouch.CouchDbClient;
-import org.lightcouch.CouchDbProperties;
 import org.lightcouch.Response;
 
 public class Test {
     public static void main(String[] args) {
 
-        //Test zum anlegen von Dokumenten
+        //com.couchcrafters.Test zum anlegen von Dokumenten
 
         DBConnect db = new DBConnect("test");
 
@@ -16,7 +16,7 @@ public class Test {
         jsonObject.put("name", "Elia");
         jsonObject.put("alter", 79);
 
-        //Test
+        //com.couchcrafters.Test
 
         // Füge das Dokument zur Datenbank hinzu
         Response response = db.getClient().save(jsonObject);

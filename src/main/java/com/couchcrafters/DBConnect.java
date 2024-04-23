@@ -1,8 +1,10 @@
+package com.couchcrafters;
+
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.CouchDbProperties;
 
 public class DBConnect {
-    //Test zum anlegen von Dokumenten
+    //com.couchcrafters.Test zum anlegen von Dokumenten
     private CouchDbProperties properties;
     private CouchDbClient dbClient;
     public DBConnect(String DataBaseName){
