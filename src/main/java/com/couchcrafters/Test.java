@@ -13,9 +13,9 @@ public class Test {
 
         //Hier wird das json mal generiert
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "Elia");
+        jsonObject.put("name", "Michi");
         jsonObject.put("alter", 79);
-
+//michi test
         //com.couchcrafters.Test
 
         // Füge das Dokument zur Datenbank hinzu
