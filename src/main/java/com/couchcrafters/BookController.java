@@ -2,18 +2,33 @@ package com.couchcrafters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
-
-import java.util.List;
-
-
+@Slf4j
 @Controller
 public class BookController {
 
-    @GetMapping("/")
+    @GetMapping(value = {"/"})
     public String index() {
         return "index.html";
+    }
+
+    @GetMapping(value = {"/addBook"})
+    public String addBook(Model model) {
+        model.addAttribute("book", new Book());
+        return "addBook.html";
+    }
+
+    @GetMapping(value = {"/contact"})
+    public String contact() {
+        return "contact.html";
+    }
+
+    @PostMapping("/addBook")
+    public String saveBook(@ModelAttribute("book") Book book) {
+
+        Testhinzufuegen.buchSpeichern(book);
+        return "redirect:/";
     }
 }
