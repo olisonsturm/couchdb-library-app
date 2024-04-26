@@ -36,6 +36,7 @@ public class Book {
     }
 
 
+
     public String get_id() {
         return _id;
     }
@@ -44,36 +45,6 @@ public class Book {
         this._id = _id;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "_id='" + _id + '\'' +
-                ", amount=" + amount +
-                ", isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", authors=" + Arrays.toString(authors) +
-                ", publisher='" + publisher + '\'' +
-                ", publicationYear=" + publicationYear +
-                ", genre='" + genre + '\'' +
-                ", rating=" + rating +
-                '}';
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitle() {
         return title;
@@ -99,12 +70,12 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public String getPublishedYear() {
+        return publishedYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setPublishedYear(String publishedYear) {
+        this.publishedYear = publishedYear;
     }
 
     public String getGenre() {
@@ -115,12 +86,26 @@ public class Book {
         this.genre = genre;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "_id='" + _id + '\'' +
+                ", amount=" + amount +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", authors=" + Arrays.toString(authors) +
+                ", publisher='" + publisher + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }
 
