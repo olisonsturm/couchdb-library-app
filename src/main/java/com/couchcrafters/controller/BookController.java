@@ -31,6 +31,7 @@ public class BookController {
     public String saveBook(@ModelAttribute("book") Book book) {
 
         BookService.buchSpeichern(book);
-        return "redirect:/";
+        return "redirect:/addBook";
     }
+
 }

@@ -5,11 +5,12 @@ import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
 
 public class BookService {
+   static CouchDbClient dbClient = new CouchDbClient();
     public static String buchSpeichern(Book book) {
 
-        CouchDbClient dbClient = new CouchDbClient();
+        //Authoren spliten
+        book.setAuthors(book.getAuthors()[0].split(";"));
 
-        // UUID wird automatisch generiert
         Response response = dbClient.save(book);
 
         if (response.getError() == null) {
