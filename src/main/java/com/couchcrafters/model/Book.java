@@ -1,4 +1,4 @@
-package com.couchcrafters;
+package com.couchcrafters.model;
 
 import lombok.Data;
 import org.json.JSONObject;

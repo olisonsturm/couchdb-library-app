@@ -1,16 +1,15 @@
-package com.couchcrafters;
+package com.couchcrafters.service;
 
+import com.couchcrafters.model.Book;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
 
-public class Testhinzufuegen {
+public class BookService {
     public static String buchSpeichern(Book book) {
 
         CouchDbClient dbClient = new CouchDbClient();
 
-        //Automatische ID generieren
-
-        book.set_id("2102");
+        // UUID wird automatisch generiert
         Response response = dbClient.save(book);
 
         if (response.getError() == null) {
