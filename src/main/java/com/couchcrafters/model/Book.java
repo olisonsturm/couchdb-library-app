@@ -2,6 +2,9 @@ package com.couchcrafters.model;
 
 import lombok.Data;
 import org.json.JSONObject;
+
+import java.util.Arrays;
+
 @Data
 public class Book {
 
@@ -39,6 +42,21 @@ public class Book {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "_id='" + _id + '\'' +
+                ", amount=" + amount +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", authors=" + Arrays.toString(authors) +
+                ", publisher='" + publisher + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 
     public int getAmount() {
