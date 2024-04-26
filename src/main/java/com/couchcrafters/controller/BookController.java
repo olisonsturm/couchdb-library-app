@@ -1,5 +1,7 @@
-package com.couchcrafters;
+package com.couchcrafters.controller;
 
+import com.couchcrafters.service.BookService;
+import com.couchcrafters.model.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +30,7 @@ public class BookController {
     @PostMapping("/addBook")
     public String saveBook(@ModelAttribute("book") Book book) {
 
-        Testhinzufuegen.buchSpeichern(book);
+        BookService.buchSpeichern(book);
         return "redirect:/";
     }
 }
