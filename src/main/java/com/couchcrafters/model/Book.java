@@ -2,37 +2,40 @@ package com.couchcrafters.model;
 
 import lombok.Data;
 import org.json.JSONObject;
+
+import java.util.Arrays;
+
 @Data
 public class Book {
 
     private String _id;
-
-
+    private int amount;
+    private String isbn;
     private String title;
     private String[] authors;
     private String publisher;
-    private String publishedYear;
+    private int publicationYear;
     private String genre;
-    private String rating;
-    private String isbn;
-    private String coverImage;
-    private String amount;
-    // private boolean available;
+    private double rating;
 
-    public Book() {}
 
-    public Book(String _id, String title, String[] authors, String publisher, String publishedYear, String genre, String rating, String isbn, String coverImage, String amount) {
+    public Book(String _id, int amount, String isbn, String title, String[] authors, String publisher, int publicationYear, String genre, double rating) {
         this._id = _id;
+        this.amount = amount;
+        this.isbn = isbn;
         this.title = title;
         this.authors = authors;
         this.publisher = publisher;
-        this.publishedYear = publishedYear;
+        this.publicationYear = publicationYear;
         this.genre = genre;
         this.rating = rating;
-        this.isbn = isbn;
-        this.coverImage = coverImage;
-        this.amount = amount;
     }
+
+    public Book() {
+
+    }
+
+
 
     public String get_id() {
         return _id;
@@ -41,6 +44,7 @@ public class Book {
     public void set_id(String _id) {
         this._id = _id;
     }
+
 
     public String getTitle() {
         return title;
@@ -88,29 +92,20 @@ public class Book {
 
     public void setRating(String rating) {
         this.rating = rating;
-    }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getCoverImage() {
-        return coverImage;
-    }
-
-    public void setCoverImage(String coverImage) {
-        this.coverImage = coverImage;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
+    @Override
+    public String toString() {
+        return "Book{" +
+                "_id='" + _id + '\'' +
+                ", amount=" + amount +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", authors=" + Arrays.toString(authors) +
+                ", publisher='" + publisher + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }
+

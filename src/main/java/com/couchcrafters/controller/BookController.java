@@ -3,13 +3,18 @@ package com.couchcrafters.controller;
 import com.couchcrafters.service.BookService;
 import com.couchcrafters.model.Book;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 public class BookController {
+
+
 
     @GetMapping(value = {"/"})
     public String index() {
@@ -22,15 +27,21 @@ public class BookController {
         return "addBook.html";
     }
 
-    @GetMapping(value = {"/contact"})
-    public String contact() {
-        return "contact.html";
+    @GetMapping(value = {"/bookStats"})
+    public String allBooks(Model model) {
+        List<Book> books = BookService.getAllBooks();
+        for(Book b : books){
+            System.out.println(b.getTitle());
+        }
+        model.addAttribute("books",books);
+        return "bookStats.html";
     }
 
     @PostMapping("/addBook")
     public String saveBook(@ModelAttribute("book") Book book) {
 
         BookService.buchSpeichern(book);
-        return "redirect:/";
+        return "redirect:/addBook";
     }
+
 }
