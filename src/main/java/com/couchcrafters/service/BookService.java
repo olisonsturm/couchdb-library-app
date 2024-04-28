@@ -2,13 +2,12 @@ package com.couchcrafters.service;
 
 import com.couchcrafters.model.Book;
 import org.lightcouch.CouchDbClient;
-import org.lightcouch.Page;
 import org.lightcouch.Response;
 
 import java.util.List;
 
 public class BookService {
-   static CouchDbClient dbClient = new CouchDbClient();
+    static CouchDbClient dbClient = new CouchDbClient();
     public static String buchSpeichern(Book book) {
         //Authoren spliten
         book.setAuthors(book.getAuthors()[0].split(";"));
@@ -29,8 +28,5 @@ public class BookService {
         }
         return books;
     }
-
-
-
 }
 
