@@ -15,11 +15,7 @@ public class Customer {
     private String phone;
     private Address address;
 
-    public class Address {
-        private String street;
-        private String city;
-        private String postCode;
-    }
+
 
     public Customer() {}
 
@@ -29,7 +25,7 @@ public class Customer {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.address = address;
+        this.address = new Address(address.street,address.city,address.postCode);
     }
 
     public String get_id() {
