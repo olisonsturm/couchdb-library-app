@@ -1,12 +1,14 @@
 package com.couchcrafters.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class Customer {
 
     // id
-    private String _id;
+    @JsonProperty("_id")
+    private String id;
 
     // attributs
     private String firstName;
@@ -15,12 +17,10 @@ public class Customer {
     private String phone;
     private Address address;
 
-
-
     public Customer() {}
 
-    public Customer(String _id, String firstName, String lastName, String email, String phone, Address address) {
-        this._id = _id;
+    public Customer(String id, String firstName, String lastName, String email, String phone, Address address) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -28,12 +28,12 @@ public class Customer {
         this.address = new Address(address.street,address.city,address.postCode);
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
