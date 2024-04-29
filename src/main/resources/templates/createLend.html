@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Neue Aushleihe</title>
+</head>
+<body>
+<h1> Neue Ausleihe anlegen</h1>
+<form action="/createLend" method="post">
+    <label for="_id">ID:</label><br>
+    <input type="text" id="_id" name="_id"><br>
+
+    <label for="book_id">Book ID:</label><br>
+    <input type="text" id="book_id" name="book_id"><br>
+
+    <label for="customer_id">Customer ID:</label><br>
+    <input type="text" id="customer_id" name="customer_id"><br>
+
+    <label for="lendDate">Lend Date:</label><br>
+    <input type="text" id="lendDate" name="lendDate"><br>
+
+    <label for="returnDate">Return Date:</label><br>
+    <input type="text" id="returnDate" name="returnDate"><br>
+
+    <label for="returnedBoolean">Returned:</label><br>
+    <select id="returnedBoolean" name="returnedBoolean">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
