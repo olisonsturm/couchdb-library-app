@@ -6,7 +6,9 @@ import com.couchcrafters.service.BookService;
 import com.couchcrafters.model.Book;
 import com.couchcrafters.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
@@ -16,20 +18,17 @@ import java.util.List;
 @Controller
 public class CustomerController {
 
-
+    @Autowired
+    CustomerService customerService;
 
     @GetMapping("/addCustomer")
     public String addCustomer(Model model){
         model.addAttribute("customer", new Customer());
-        model.addAttribute("address", new Address());
         return "addCustomer.html";
     }
     @PostMapping("/addCustomer")
-    public String addCustomer(@ModelAttribute("customer") Customer customer,@ModelAttribute("address") Address address){
-        System.out.println(address.street);
-        System.out.println(address.postCode);
-        customer.setAddress(address);
-        CustomerService.saveCustomer(customer);
+    public String addCustomer(@ModelAttribute("customer") Customer customer){
+        customerService.saveCustomer(customer);
         return "addCustomer.html";
     }
 
