@@ -39,7 +39,6 @@ public class BookController {
 
     @PostMapping("/addBook")
     public String saveBook(@ModelAttribute("book") Book book) {
-
         BookService.buchSpeichern(book);
         return "redirect:/addBook";
     }

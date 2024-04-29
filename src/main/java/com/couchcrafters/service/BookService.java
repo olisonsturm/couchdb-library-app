@@ -3,11 +3,12 @@ package com.couchcrafters.service;
 import com.couchcrafters.model.Book;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class BookService {
-    static CouchDbClient dbClient = new CouchDbClient();
+    private static CouchDbClient dbClient = new CouchDbClient("couchdb_books.properties");
     public static String buchSpeichern(Book book) {
         //Authoren spliten
         book.setAuthors(book.getAuthors()[0].split(";"));
