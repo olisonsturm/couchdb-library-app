@@ -8,6 +8,7 @@ import com.couchcrafters.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
@@ -20,14 +21,15 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+  
 
     @GetMapping("/addCustomer")
     public String addCustomer(Model model){
         model.addAttribute("customer", new Customer());
-        model.addAttribute("address", new Address());
         return "addCustomer.html";
     }
     @PostMapping("/addCustomer")
@@ -35,6 +37,7 @@ public class CustomerController {
         System.out.println(address.street);
         System.out.println(address.postCode);
         customer.setAddress(address);
+
         customerService.saveCustomer(customer);
         return "addCustomer.html";
     }
