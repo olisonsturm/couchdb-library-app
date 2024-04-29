@@ -70,12 +70,36 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getPublishedYear() {
-        return publishedYear;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setPublishedYear(String publishedYear) {
-        this.publishedYear = publishedYear;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getGenre() {
@@ -85,13 +109,6 @@ public class Book {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
 
     @Override
     public String toString() {
