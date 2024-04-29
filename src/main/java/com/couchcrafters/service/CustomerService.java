@@ -10,22 +10,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class CustomerService {
-    private final CouchDbClient dbClient;
 
-    public CustomerService() {
-        dbClient = new CouchDbClient("couchdb_customers.properties");
-    }
-
-    public void saveCustomer(Customer customer) {
-        // Erstellt ein neues Document in CouchDB (Customer)
+    private static final CouchDbClient dbClient = new CouchDbClient("couchdb_customers.properties");
+  
+    public  void saveCustomer(Customer customer) {
         Response response = dbClient.save(customer);
-
         if (response.getError() == null) {
             System.out.println("Dokument wurde erfolgreich hinzugefügt. ID: " + response.getId());
         } else {
             System.err.println("Fehler beim Hinzufügen des Dokuments: " + response.getError());
         }
     }
+
 
     public List<Customer> getAllCustomers(){
         List<Customer> customers = dbClient.view("_all_docs").includeDocs(true).query(Customer.class);

@@ -26,6 +26,7 @@ public class Lending {
         this.lendDate = lendDate;
         this.returnDate = returnDate;
         this.returnedBoolean = returnedBoolean;
+
     }
 
     public String get_id() {

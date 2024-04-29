@@ -21,13 +21,23 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+  
+
     @GetMapping("/addCustomer")
     public String addCustomer(Model model){
         model.addAttribute("customer", new Customer());
         return "addCustomer.html";
     }
     @PostMapping("/addCustomer")
-    public String addCustomer(@ModelAttribute("customer") Customer customer){
+    public String addCustomer(@ModelAttribute("customer") Customer customer,@ModelAttribute("address") Address address){
+        System.out.println(address.street);
+        System.out.println(address.postCode);
+        customer.setAddress(address);
+
         customerService.saveCustomer(customer);
         return "addCustomer.html";
     }
