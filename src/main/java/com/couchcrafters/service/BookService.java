@@ -1,8 +1,8 @@
 package com.couchcrafters.service;
 
 import com.couchcrafters.model.Book;
-import org.lightcouch.CouchDbClient;
-import org.lightcouch.Response;
+import com.google.gson.JsonObject;
+import org.lightcouch.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +12,7 @@ public class BookService {
     public  void saveBook(Book book) {
         //Authoren spliten
         book.setAuthors(book.getAuthors()[0].split(";"));
+        book.set_id(generateBookId());
         Response response = dbClient.save(book);
         if (response.getError() == null) {
             System.out.println("Dokument wurde erfolgreich hinzugefügt. ID: " + response.getId());
@@ -29,6 +30,25 @@ public class BookService {
         }
 
         return books;
+    }
+
+
+
+
+    public String generateBookId(){
+        List<JsonObject> jsons = dbClient.view("idtoInt/idtoInt").query(JsonObject.class);
+        int maxValue = 0; // Annahme: Die Werte sind Integer
+        for (JsonObject j : jsons) {
+            if(!j.get("value").isJsonNull()) {
+                int value = j.get("value").getAsInt();
+                if (value > maxValue) {
+                    maxValue = value;
+                }
+            }
+        }
+        System.out.println(maxValue);
+        maxValue = maxValue +1;
+        return Integer.toString(maxValue);
     }
 }
 

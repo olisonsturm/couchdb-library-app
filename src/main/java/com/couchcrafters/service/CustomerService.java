@@ -26,7 +26,7 @@ public class CustomerService {
     public List<Customer> getAllCustomers(){
         List<Customer> customers = dbClient.view("_all_docs").includeDocs(true).query(Customer.class);
         for(Customer c : customers){
-            System.out.println(c.get_id());
+            System.out.println(c.getId());
         }
         return customers;
     }
