@@ -17,28 +17,29 @@ public class LendService {
     private static final CouchDbClient lendClient = new CouchDbClient("couchdb_lendings.properties");
 
 
-  /*  public static void main(String[] args) {
-        View view = bookClient.view("idAndTitle/getAllBooksWithTitle").includeDocs(true);;
-        List<Book> books = view.query(Book.class);
-        for(Book b : books){
-            System.out.println(b.getTitle());
-            System.out.println(b.get_id());
-        }
-    } */
 
-    public void saveLending(Lending lending){
+
+    public boolean saveLending(Lending lending){
+
+
+
         lending.set_id(generateId());
 
         lending.setBook_id(lending.getBook_id().replace("\"", ""));
         lending.setCustomer_id(lending.getCustomer_id().replace("\"", ""));
 
-        Response response = lendClient.save(lending);
-        if (response.getError() == null) {
-            System.out.println("Dokument wurde erfolgreich hinzugefügt. ID: " + response.getId());
-        } else {
-            System.err.println("Fehler beim Hinzufügen des Dokuments: " + response.getError());
-        }
 
+        if(checkAvailable(lending.getBook_id())){
+            Response response = lendClient.save(lending);
+            if (response.getError() == null) {
+                System.out.println("Dokument wurde erfolgreich hinzugefügt. ID: " + response.getId());
+            } else {
+                System.err.println("Fehler beim Hinzufügen des Dokuments: " + response.getError());
+            }
+            return true;
+        } else{
+            return false;
+        }
     }
     public String generateId(){
         List<JsonObject> jsons = lendClient.view("idtoInt/idtoInt").query(JsonObject.class);
@@ -47,4 +48,31 @@ public class LendService {
         max += 1;
         return Integer.toString(max);
     }
+
+    public boolean checkAvailable(String id ){
+
+        List<JsonObject> books = bookClient.view("idToAmount/idToAmount").key(id).query(JsonObject.class);
+        List<JsonObject> lendings = lendClient.view("countBooksForId/countBooksForIdThatAreFalse").key(id).query(JsonObject.class);
+
+        //entweder es gibt keine Ausleihen dazu, oder er Benutzt die anzahl der Ausgeliehenen bücher und die amount
+        if((lendings.size() == 0 )|| (books.get(0).get("value").getAsInt() < lendings.get(0).get("value").getAsInt())){
+            return  true;
+        }else {
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        String id = "1002";
+        List<JsonObject> books = bookClient.view("idToAmount/idToAmount").key(id).query(JsonObject.class);
+        List<JsonObject> lendings = lendClient.view("countBooksForId/countBooksForIdThatAreFalse").key(id).query(JsonObject.class);
+
+        if((lendings.size() == 0 )|| (books.get(0).get("value").getAsInt() < lendings.get(0).get("value").getAsInt())){
+            System.out.println("Ja kann man machen");
+        }else {
+            System.out.println("bsit du duumm");
+        }
+
+    }
+
 }

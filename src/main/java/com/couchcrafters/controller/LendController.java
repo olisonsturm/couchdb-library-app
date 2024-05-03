@@ -46,13 +46,23 @@ public class LendController {
     }
     @PostMapping("/createLend")
     public  String createLend(@ModelAttribute("lend") Lending lend){
-        lendService.saveLending(lend);
-        return "redirect:/createdLend";
+        if(lendService.saveLending(lend)){
+            return "redirect:/createdLend";
+        }else{
+            return "redirect:/error";
+        }
+
     }
+
 
     @GetMapping("/createdLend")
     public String createdLend(){
         return "createdLend.html";
     }
+    @GetMapping("/error")
+    public String error(){
+        return "error.html";
+    }
+
 
 }
