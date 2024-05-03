@@ -2,7 +2,10 @@ package com.couchcrafters.controller;
 
 import com.couchcrafters.model.Book;
 import com.couchcrafters.model.Lending;
+import com.couchcrafters.service.BookService;
+import com.couchcrafters.service.CustomerService;
 import com.couchcrafters.service.LendService;
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,21 +22,37 @@ public class LendController {
     @Autowired
     LendService lendService;
 
-    public LendController(LendService lendService) {
+    @Autowired
+    BookService bookService;
+
+    @Autowired
+    CustomerService customerService;
+
+    public LendController(LendService lendService, BookService bookService,CustomerService customerService) {
         this.lendService = lendService;
+        this.bookService = bookService;
+        this.customerService = customerService;
     }
+
 
     @GetMapping("/createLend")
     public String createLend(Model model){
+
+
+        model.addAttribute("books", bookService.getAllTitlesAndAuthors());
+        model.addAttribute("customers", customerService.getAllNamesAndEmails());
         model.addAttribute("lend", new Lending());
         return "createLend.html";
     }
     @PostMapping("/createLend")
     public  String createLend(@ModelAttribute("lend") Lending lend){
         lendService.saveLending(lend);
-        return "createLend.html";
+        return "redirect:/createdLend";
     }
 
-
+    @GetMapping("/createdLend")
+    public String createdLend(){
+        return "createdLend.html";
+    }
 
 }

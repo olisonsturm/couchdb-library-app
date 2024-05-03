@@ -7,8 +7,8 @@ import lombok.Data;
 public class Customer {
 
     // id
-    @JsonProperty("_id")
-    private String id;
+
+    private String _id;
 
     // attributs
     private String firstName;
@@ -20,7 +20,7 @@ public class Customer {
     public Customer() {}
 
     public Customer(String id, String firstName, String lastName, String email, String phone, Address address) {
-        this.id = id;
+        this._id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -29,11 +29,11 @@ public class Customer {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getFirstName() {

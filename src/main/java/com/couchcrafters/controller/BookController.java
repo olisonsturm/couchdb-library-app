@@ -45,7 +45,10 @@ public class BookController {
     @PostMapping("/addBook")
     public String saveBook(@ModelAttribute("book") Book book) {
         bookService.saveBook(book);
-        return "redirect:/addBook";
+        return "redirect:/addedBook";
     }
-
+    @GetMapping(value = {"/addedBook"})
+    public String addedBook(Model model) {
+        return "addedBook.html";
+    }
 }

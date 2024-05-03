@@ -2,6 +2,7 @@ package com.couchcrafters.service;
 
 import com.couchcrafters.model.Book;
 import com.couchcrafters.model.Lending;
+import com.google.gson.JsonObject;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
 import org.lightcouch.View;
@@ -26,6 +27,11 @@ public class LendService {
     } */
 
     public void saveLending(Lending lending){
+        lending.set_id(generateId());
+
+        lending.setBook_id(lending.getBook_id().replace("\"", ""));
+        lending.setCustomer_id(lending.getCustomer_id().replace("\"", ""));
+
         Response response = lendClient.save(lending);
         if (response.getError() == null) {
             System.out.println("Dokument wurde erfolgreich hinzugefügt. ID: " + response.getId());
@@ -33,5 +39,12 @@ public class LendService {
             System.err.println("Fehler beim Hinzufügen des Dokuments: " + response.getError());
         }
 
+    }
+    public String generateId(){
+        List<JsonObject> jsons = lendClient.view("idtoInt/idtoInt").query(JsonObject.class);
+        JsonObject value = jsons.get(0).get("value").getAsJsonObject();
+        int max = value.get("max").getAsInt();
+        max += 1;
+        return Integer.toString(max);
     }
 }

@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Neue Aushleihe</title>
+    <script src="lendJS.js" defer></script>
 </head>
 <body>
 <h1> Neue Ausleihe anlegen</h1>
 <form action="/createLend" method="post">
-    <label for="_id">ID:</label><br>
-    <input type="text" id="_id" name="_id"><br>
 
-    <label for="book_id">Book ID:</label><br>
-    <input type="text" id="book_id" name="book_id"><br>
+    <label for="book_id">Book:</label><br>
+    <select id="book_id" name="book_id">
+        <option th:each="book : ${books}" th:value="${book.get('value')}" th:text="${book.get('key')}"></option>
+    </select><br>
 
-    <label for="customer_id">Customer ID:</label><br>
-    <input type="text" id="customer_id" name="customer_id"><br>
 
+    <label for="customer_id">Customer:</label><br>
+    <select id="customer_id" name="customer_id">
+        <option th:each="customer : ${customers}" th:value="${customer.get('value')}" th:text="${customer.get('key')}"></option>
+    </select><br>
     <label for="lendDate">Lend Date:</label><br>
     <input type="text" id="lendDate" name="lendDate"><br>
 
@@ -31,4 +34,5 @@
     <input type="submit" value="Submit">
 </form>
 </body>
+
 </html>
