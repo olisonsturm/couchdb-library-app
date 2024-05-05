@@ -25,7 +25,7 @@ public class BookService {
     }
 
     public  List<Book> getAllBooks(){
-        List<Book> books = dbClient.view("_all_docs").includeDocs(true).query(Book.class);
+        List<Book> books = dbClient.view("allBooks/allBooks").includeDocs(true).query(Book.class);
         for(Book b : books){
             System.out.println(b.getTitle());
         }

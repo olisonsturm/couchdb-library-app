@@ -15,11 +15,14 @@
 
 <div th:replace="~{fragments/header.html :: header}"></div>
 
+<p class="d-flex justify-content-center"><a href ="http://localhost:8080/addBook">Buch anlegen</a></p>
+<p  class="d-flex justify-content-center"><a href ="http://localhost:8080/addCustomer">Kunde anlegen</a></p>
+<p class="d-flex justify-content-center"><a href ="http://localhost:8080/createLend">Ausleihe anlegen</a></p>
+<p class="d-flex justify-content-center"><a href ="http://localhost:8080/returnLending">Ausleihe zurückgeben</a></p>
 
-<p><a href ="http://localhost:8080/addBook">Buch anlegen</a></p>
-<p><a href ="http://localhost:8080/addCustomer">Kunde anlegen</a></p>
-<p><a href ="http://localhost:8080/createLend">Ausleihe anlegen</a></p>
-<p><a href ="http://localhost:8080/returnLending">Ausleihe zurückgeben</a></p>
+<h2 class="d-flex justify-content-center">Alle unsere Bücher auf einen Blick:</h2>
+<div th:replace="~{fragments/grid.html :: grid}"></div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

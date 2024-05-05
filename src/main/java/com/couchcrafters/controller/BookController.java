@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -22,8 +23,11 @@ public class BookController {
     }
 
     @GetMapping(value = {"/"})
-    public String index() {
-        return "index.html";
+    public String index(Model model) {
+        List<Book> books = bookService.getAllBooks();
+        Arrays.toString(books.get(1).getAuthors());
+        model.addAttribute("books",books);
+        return  "index.html";
     }
 
     @GetMapping(value = {"/addBook"})
