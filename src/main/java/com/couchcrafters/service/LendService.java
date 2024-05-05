@@ -1,13 +1,12 @@
 package com.couchcrafters.service;
 
-import com.couchcrafters.model.Book;
 import com.couchcrafters.model.Lending;
 import com.google.gson.JsonObject;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
-import org.lightcouch.View;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -62,17 +61,26 @@ public class LendService {
         }
     }
 
-    public static void main(String[] args) {
-        String id = "1002";
-        List<JsonObject> books = bookClient.view("idToAmount/idToAmount").key(id).query(JsonObject.class);
-        List<JsonObject> lendings = lendClient.view("countBooksForId/countBooksForIdThatAreFalse").key(id).query(JsonObject.class);
+    public void updateLend(String  lendingid){
+        lendingid = lendingid.replace("\"", "");
+        Lending lend = lendClient.find(Lending.class,lendingid);
+        lend.setReturnDate(String.valueOf(new Date()));
+        lend.setReturnedBoolean(true);
 
-        if((lendings.size() == 0 )|| (books.get(0).get("value").getAsInt() < lendings.get(0).get("value").getAsInt())){
-            System.out.println("Ja kann man machen");
-        }else {
-            System.out.println("bsit du duumm");
+        System.out.println(lend.toString());
+
+     Response response  = lendClient.update(lend);
+        if (response.getError() == null) {
+            System.out.println("Dokument wurde geändert " + response.getId());
+        } else {
+            System.err.println("Fehler beim Ändern des Dokuments: " + response.getError());
         }
-
     }
 
+    public List<JsonObject> getAllCurrentLends(){
+        return lendClient.view("allUnreturnedLends/allUnreturnedLends").query(JsonObject.class);
+    }
+
+
 }
+

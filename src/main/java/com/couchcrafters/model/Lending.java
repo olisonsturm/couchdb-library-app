@@ -8,6 +8,8 @@ public class Lending {
     // id
     private String _id;
 
+    private String _rev;
+
     // foreign keys
     private String book_id;
     private String customer_id;
@@ -19,15 +21,7 @@ public class Lending {
 
     public Lending() {}
 
-    public Lending(String _id, String book_id, String customer_id, String lendDate, String returnDate, Boolean returnedBoolean) {
-        this._id = _id;
-        this.book_id = book_id;
-        this.customer_id = customer_id;
-        this.lendDate = lendDate;
-        this.returnDate = returnDate;
-        this.returnedBoolean = returnedBoolean;
 
-    }
 
     public String get_id() {
         return _id;
@@ -75,5 +69,28 @@ public class Lending {
 
     public void setReturnedBoolean(Boolean returnedBoolean) {
         this.returnedBoolean = returnedBoolean;
+    }
+
+    public Lending(String _id, String _rev, String book_id, String customer_id, String lendDate, String returnDate, Boolean returnedBoolean) {
+        this._id = _id;
+        this._rev = _rev;
+        this.book_id = book_id;
+        this.customer_id = customer_id;
+        this.lendDate = lendDate;
+        this.returnDate = returnDate;
+        this.returnedBoolean = returnedBoolean;
+    }
+
+    @Override
+    public String toString() {
+        return "Lending{" +
+                "_id='" + _id + '\'' +
+                ", _rev='" + _rev + '\'' +
+                ", book_id='" + book_id + '\'' +
+                ", customer_id='" + customer_id + '\'' +
+                ", lendDate='" + lendDate + '\'' +
+                ", returnDate='" + returnDate + '\'' +
+                ", returnedBoolean=" + returnedBoolean +
+                '}';
     }
 }

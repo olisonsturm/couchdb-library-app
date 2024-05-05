@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hier Kann das Buch zurückgegeben werden</h1>
+
+<form action="/returnLending" method="post">
+    <label for="value">Lend:</label><br>
+    <select id="value" name="value">
+        <option th:each="lend : ${lends}" th:value="${lend.get('value')}" th:text="${lend.get('key')}"></option>
+    </select>
+        <br>
+    <button type="submit">Diese Ausleihe zurückgeben</button>
+</form>
+</body>
+</html>
