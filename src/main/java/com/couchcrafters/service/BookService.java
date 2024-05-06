@@ -29,7 +29,13 @@ public class BookService {
         for(Book b : books){
             System.out.println(b.getTitle());
         }
-
+        return books;
+    }
+        public  List<Book> getAllBooksFiltered(String genre){
+        List<Book> books = dbClient.view("genreSearch/genreSearch").key(genre).includeDocs(true).query(Book.class);
+        for(Book b : books){
+            System.out.println(b.getTitle());
+        }
         return books;
     }
 

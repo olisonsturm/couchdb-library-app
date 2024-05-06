@@ -7,6 +7,8 @@
     <link th:href="@{styles.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
 <h1>Neues Buch erstellen</h1>
 
 <form action="/addBook" method="post">

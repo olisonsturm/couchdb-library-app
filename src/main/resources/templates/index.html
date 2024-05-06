@@ -21,6 +21,14 @@
 <p class="d-flex justify-content-center"><a href ="http://localhost:8080/returnLending">Ausleihe zurückgeben</a></p>
 
 <h2 class="d-flex justify-content-center">Alle unsere Bücher auf einen Blick:</h2>
+<div>
+<form class="d-flex justify-content-center" action = "/searchGenre" method="post">
+    <label for="genre">Genre: </label>
+    <input type="text" id="genre" name="genre"><br>
+    <button type="submit">Search</button>
+</form>
+
+</div>
 <div th:replace="~{fragments/grid.html :: grid}"></div>
 
 

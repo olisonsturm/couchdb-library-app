@@ -8,6 +8,9 @@
     <link th:href="@{styles.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+
+<div th:replace="~{fragments/header.html :: header}"></div>
+
 <h1> Neue Ausleihe anlegen</h1>
 <form action="/createLend" method="post">
 

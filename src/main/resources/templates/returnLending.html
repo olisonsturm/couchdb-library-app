@@ -7,6 +7,8 @@
     <link th:href="@{styles.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
 <h1>Hier Kann das Buch zurückgegeben werden</h1>
 
 <form action="/returnLending" method="post">
