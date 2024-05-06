@@ -5,26 +5,38 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../../static/styles.css">
-
 </head>
-<body >
+
+<body>
 
 <div th:fragment="header">
-
-<div class="container-fluid custom-bg-color text-white">
-    <div class="row">
-        <div class="col">
-            <form class="py-4 mb-0" action="#" th:action="@{/}" th:method="get">
-                <button class="btn btn-info" type="submit">Home</button>
-            </form>
-        </div>
-        <div class="col">
-            <p class="text-center py-4 mb-0">Unsere CouchCrafter Bibliothek!</p>
+    <div class="container-fluid custom-bg-color text-white">
+        <div class="row justify-content-center">
+            <div class="col align-self-center">
+                <div class="btn-group" role="group">
+                    <form action="#" th:action="@{/}" th:method="get">
+                        <button class="text-white btn btn-custom mr-1" type="submit">Home</button>
+                    </form>
+                    <form action="#" th:action="@{/addBook}" th:method="get">
+                        <button class="text-white btn btn-custom ml-1" type="submit">Buch anlegen </button>
+                    </form>
+                    <form action="#" th:action="@{/addCustomer}" th:method="get">
+                        <button class=" text-white btn btn-custom ml-1" type="submit">Kunde anlegen</button>
+                    </form>
+                    <form action="#" th:action="@{/createLend}" th:method="get">
+                        <button class="text-white btn btn-custom ml-1" type="submit">Ausleihe anlegen</button>
+                    </form>
+                    <form action="#" th:action="@{/returnLending}" th:method="get">
+                        <button class="text-white btn btn-custom ml-1" type="submit">Ausleihe zurückgeben</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <p class="text-center py-4 mb-0">Unsere CouchCrafter Bibliothek!</p>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -32,4 +44,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
