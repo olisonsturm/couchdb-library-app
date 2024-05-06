@@ -66,7 +66,7 @@ public class LendController {
         return "returnLending.html";
     }
 
-    @PostMapping("/w")
+    @PostMapping("/returnLending")
     public String returnLending(@RequestParam("value") String selectedId) {
         System.out.println("Selected value: " + selectedId);
         lendService.updateLend(selectedId);
