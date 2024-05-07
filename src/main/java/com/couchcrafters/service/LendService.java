@@ -81,6 +81,15 @@ public class LendService {
         return lendClient.view("allUnreturnedLends/allUnreturnedLends").query(JsonObject.class);
     }
 
+    public List<Lending> getAllLends(){
+        return lendClient.view("allLends/allLends").includeDocs(true).query(Lending.class);
+    }
+
+    public List<Lending> getALlFilteredLends(boolean lended){
+        return lendClient.view("allLends/allBooleanFilter").key(lended).includeDocs(true).query(Lending.class);
+    }
+
+
 
 }
 

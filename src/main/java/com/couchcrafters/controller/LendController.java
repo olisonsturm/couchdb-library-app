@@ -1,5 +1,6 @@
 package com.couchcrafters.controller;
 
+import com.couchcrafters.model.Book;
 import com.couchcrafters.model.Lending;
 import com.couchcrafters.service.BookService;
 import com.couchcrafters.service.CustomerService;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -72,5 +75,17 @@ public class LendController {
         lendService.updateLend(selectedId);
         return "redirect:/";
     }
+    @GetMapping("/lendStats")
+    public String lendStats(Model model){
+        model.addAttribute("lends",lendService.getAllLends());
+        return "lendStats.html";
+    }
+    @PostMapping("/searchLend")
+    public String index(Model model, @RequestParam("lended") boolean lended){
+        System.out.println(lended);
+        List<Lending> lends = lendService.getALlFilteredLends(lended);
+        model.addAttribute("lends",lends);
 
+        return "lendStats.html";
+    }
 }
