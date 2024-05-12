@@ -43,6 +43,17 @@ public class BookController {
         return "addBook.html";
     }
 
+    @PutMapping(value = {"/updateBook"})
+    public String updateBook(@RequestParam("bookId") String bookId,
+                             @RequestParam("title") String newTitle,
+                             @RequestParam("newAuthors") String[] newAuthors,
+                             @RequestParam("publisher") String newPublisher,
+                             @RequestParam("isbn") String newISBN) {
+        System.out.println("Selected bookId: " + bookId);
+        BookService.updateBook(bookId, newTitle, newAuthors, newPublisher, newISBN);
+        return "redirect:/";
+    }
+
     @GetMapping(value = {"/bookStats"})
     public String allBooks(Model model) {
         List<Book> books = bookService.getAllBooks();
