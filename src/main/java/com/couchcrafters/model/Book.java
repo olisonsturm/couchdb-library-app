@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Book {
 
     private String _id;
+    private String _rev;
     private int amount;
     private String isbn;
     private String title;
@@ -19,7 +20,7 @@ public class Book {
     private double rating;
 
 
-    public Book(String _id, int amount, String isbn, String title, String[] authors, String publisher, int publicationYear, String genre, double rating) {
+    public Book(String _id, int amount, String isbn, String title, String[] authors, String publisher, int publicationYear, String genre, double rating, String _rev) {
         this._id = _id;
         this.amount = amount;
         this.isbn = isbn;
@@ -29,13 +30,20 @@ public class Book {
         this.publicationYear = publicationYear;
         this.genre = genre;
         this.rating = rating;
+        this._rev = _rev;
     }
 
     public Book() {
 
     }
 
+    public String get_rev() {
+        return _rev;
+    }
 
+    public void set_rev(String _rev) {
+        this._rev = _rev;
+    }
 
     public String get_id() {
         return _id;

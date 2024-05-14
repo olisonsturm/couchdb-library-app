@@ -33,7 +33,7 @@ public class BookService {
     }
 
 
-    public static void updateBook(String bookId, String newTitle, String[] newAuthors, String newPublisher, String newISBN) {
+    public void updateBook(String bookId, String newTitle, String[] newAuthors, String newPublisher, String newISBN, String genre, double rating) {
         // Find the book by its ID
         Book bookToBeUpdated = dbClient.find(Book.class, bookId);
 
@@ -49,6 +49,12 @@ public class BookService {
         }
         if (newISBN != null && !newISBN.isEmpty()) {
             bookToBeUpdated.setIsbn(newISBN);
+        }
+
+        bookToBeUpdated.setRating(rating);
+
+        if (genre != null && !genre.isEmpty()) {
+            bookToBeUpdated.setGenre(genre);
         }
 
         System.out.println(bookToBeUpdated.toString());

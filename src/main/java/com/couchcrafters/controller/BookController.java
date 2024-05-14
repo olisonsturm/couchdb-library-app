@@ -43,16 +43,32 @@ public class BookController {
         return "addBook.html";
     }
 
-    @PutMapping(value = {"/updateBook"})
-    public String updateBook(@RequestParam("bookId") String bookId,
+    @GetMapping(value= { "/updateBook"})
+    public String updateBook(Model model){
+    List <Book> book = bookService.getAllBooks();
+    model.addAttribute("books",book);
+        return "updateBook.html";
+    }
+
+
+
+    @PostMapping (value = {"/updateBook"})
+    public String updateBook(@RequestParam("_id") String bookId,
                              @RequestParam("title") String newTitle,
                              @RequestParam("newAuthors") String[] newAuthors,
                              @RequestParam("publisher") String newPublisher,
-                             @RequestParam("isbn") String newISBN) {
+                             @RequestParam("isbn") String newISBN, @RequestParam("genre") String genre, @RequestParam("rating") double rating){
         System.out.println("Selected bookId: " + bookId);
-        BookService.updateBook(bookId, newTitle, newAuthors, newPublisher, newISBN);
-        return "redirect:/";
+        bookService.updateBook(bookId, newTitle, newAuthors, newPublisher, newISBN, genre, rating);
+        return "redirect:/bookUpdatedSuccessfully";
     }
+
+    @GetMapping(value = {"/bookUpdatedSuccessfully"})
+    public String updatedBookSuccessfully(){
+        return "bookUpdatedSuccessfully.html";
+    }
+
+
 
     @GetMapping(value = {"/bookStats"})
     public String allBooks(Model model) {
