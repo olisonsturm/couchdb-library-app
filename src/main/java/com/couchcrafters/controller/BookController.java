@@ -37,6 +37,13 @@ public class BookController {
         return "index.html";
     }
 
+    @PostMapping("/searchPublisher")
+    public String publisher (Model model, @RequestParam("publisher") String publisher){
+        List<Book> books = bookService.getAllBooksFilteredByPublisher(publisher);
+        model.addAttribute("books",books);
+        return "index.html";
+    }
+
     @GetMapping(value = {"/addBook"})
     public String addBook(Model model) {
         model.addAttribute("book", new Book());

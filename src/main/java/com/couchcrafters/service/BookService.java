@@ -40,6 +40,16 @@ public class BookService {
         return books;
     }
 
+    public  List<Book> getAllBooksFilteredByPublisher(String publisher){
+        List<Book> books = dbClient.view("publisherSearch/publisherSearch").key(publisher).includeDocs(true).query(Book.class);
+        for(Book b : books){
+            System.out.println(b.getTitle());
+        }
+        return books;
+    }
+
+
+
     public String generateId(){
         List<JsonObject> jsons = dbClient.view("idtoInt/idtoInt").query(JsonObject.class);
 
