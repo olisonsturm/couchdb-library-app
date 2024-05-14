@@ -32,6 +32,41 @@ public class BookService {
         return books;
     }
 
+
+    public void updateBook(String bookId, String newTitle, String[] newAuthors, String newPublisher, String newISBN, String genre, double rating) {
+        // Find the book by its ID
+        Book bookToBeUpdated = dbClient.find(Book.class, bookId);
+
+        // Update the book's properties with the new values
+        if (newTitle != null && !newTitle.isEmpty()) {
+            bookToBeUpdated.setTitle(newTitle);
+        }
+        if (newAuthors != null && newAuthors.length > 0) {
+            bookToBeUpdated.setAuthors(newAuthors);
+        }
+        if (newPublisher != null && !newPublisher.isEmpty()) {
+            bookToBeUpdated.setPublisher(newPublisher);
+        }
+        if (newISBN != null && !newISBN.isEmpty()) {
+            bookToBeUpdated.setIsbn(newISBN);
+        }
+
+        bookToBeUpdated.setRating(rating);
+
+        if (genre != null && !genre.isEmpty()) {
+            bookToBeUpdated.setGenre(genre);
+        }
+
+        System.out.println(bookToBeUpdated.toString());
+
+        Response response = dbClient.update(bookToBeUpdated);
+        if (response.getError() == null) {
+            System.out.println("Buchdaten wurden geändert. ID: " + response.getId());
+        } else {
+            System.err.println("Fehler beim Ändern des Buches: " + response.getError());
+        }
+    }
+
         public  List<Book> getAllBooksFiltered(String genre){
         List<Book> books = dbClient.view("genreSearch/genreSearch").key(genre).includeDocs(true).query(Book.class);
         for(Book b : books){

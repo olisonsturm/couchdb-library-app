@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Buch aktualisieren</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/styles.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+<div class="container mt-5">
+  <h1>Buch aktualisieren</h1>
+  <form action="#" th:action="@{/updateBook}" th:method="Post">
+
+    <label for="_id">Book:</label><br>
+    <select id="_id" name="_id">
+      <option th:each="book : ${books}" th:value="${book.get_id()}" th:text="${book.getTitle() + ' ' + 'ID: ' + book.get_id()}"></option>
+    </select><br>
+
+    <div class="form-group">
+      <label for="title">Neuer Titel:</label>
+      <input type="text" id="title" class="form-control" name="title">
+    </div>
+
+    <div class="form-group">
+      <label for="authors">Neuer Autor / Neue Autoren (semicolon-separated):</label>
+      <input type="text" id="authors" class="form-control"  name="newAuthors">
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Neuer Publisher:</label>
+      <input type="text" id="publisher" class="form-control" name="publisher">
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">Neue ISBN:</label>
+      <input type="text" id="isbn" class="form-control" name="isbn">
+    </div>
+
+    <div class="form-group">
+      <label for="title">Neues Genre:</label>
+      <input type="text" id="genre" class="form-control" name="genre">
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Neues Rating:</label>
+      <input type="text" id="rating" class="form-control" name="rating">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Buch aktualisieren</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
