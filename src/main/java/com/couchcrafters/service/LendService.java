@@ -20,8 +20,6 @@ public class LendService {
 
     public boolean saveLending(Lending lending){
 
-
-
         lending.set_id(generateId());
 
         lending.setBook_id(lending.getBook_id().replace("\"", ""));
@@ -88,8 +86,16 @@ public class LendService {
     public List<Lending> getALlFilteredLends(boolean lended){
         return lendClient.view("allLends/allBooleanFilter").key(lended).includeDocs(true).query(Lending.class);
     }
+    public int getFilteredLendCount(boolean lended){
+
+        List<JsonObject> jsons = lendClient.view("allLends/allFilteredCount").key(lended).query(JsonObject.class);
+        return jsons.get(0).get("value").getAsInt();
+    }
 
 
+    public static void main(String[] args) {
+        List<JsonObject> jsons = lendClient.view("allLends/allFilteredCount").key(true).query(JsonObject.class);
 
+    }
 }
 

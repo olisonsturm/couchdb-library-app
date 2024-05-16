@@ -78,6 +78,8 @@ public class LendController {
     @GetMapping("/lendStats")
     public String lendStats(Model model){
         model.addAttribute("lends",lendService.getAllLends());
+        model.addAttribute("returnedCount",lendService.getFilteredLendCount(true));
+        model.addAttribute("notReturnedCount",lendService.getFilteredLendCount(false));
         return "lendStats.html";
     }
     @PostMapping("/searchLend")

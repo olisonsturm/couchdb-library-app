@@ -68,7 +68,7 @@ public class BookService {
     }
 
         public  List<Book> getAllBooksFiltered(String genre){
-        List<Book> books = dbClient.view("genreSearch/genreSearch").key(genre).includeDocs(true).query(Book.class);
+            List<Book> books = dbClient.view("genreSearch/genreSearch").key(genre).includeDocs(true).query(Book.class);
         for(Book b : books){
             System.out.println(b.getTitle());
         }
@@ -96,6 +96,14 @@ public class BookService {
     }
     public List<JsonObject> getAllTitlesAndAuthors(){
         return dbClient.view("titleToId/titleToId").query(JsonObject.class);
+    }
+
+
+    public static void main(String[] args) {
+        List<Book> books = dbClient.view("allBooks/allBooks").includeDocs(true).query(Book.class);
+        for(Book b : books){
+            System.out.println(b.getTitle());
+        }
     }
 }
 
