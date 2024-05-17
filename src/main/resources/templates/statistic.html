@@ -50,6 +50,7 @@
 
 <div id="returnedCount" th:text="${returnedCount}" style="display: none;">1</div>
 <div id="notReturnedCount" th:text="${notReturnedCount}" style="display: none;">2</div>
+<div id="genreData" style="display: none;">[[${genreData}]]</div>
 
 
 
@@ -59,50 +60,65 @@
 
 <script>
 
-  var returnedCount = parseInt(document.getElementById('returnedCount').innerText);
-  var notReturnedCount = parseInt(document.getElementById('notReturnedCount').innerText);
+// Holen der Rückgabe- und Nicht-Rückgabe-Zahlen
+var returnedCount = parseInt(document.getElementById('returnedCount').innerText);
+var notReturnedCount = parseInt(document.getElementById('notReturnedCount').innerText);
 
-  var genre = /*[[${genreData}]]*/  'default';
+// Parsen des Genre-Datensatzes
+var genreDataRaw = document.getElementById('genreData').innerText;
+var genreArray = JSON.parse(genreDataRaw);
 
-  var lendedData = {
-    labels: ["Zurückgegeben", "Nicht zurückgegeben"],
-    datasets: [{
-      data: [returnedCount, notReturnedCount],
-      backgroundColor: ["rgba(0, 203, 6, 0.8)", "rgba(143, 43, 178, 0.8)"],
-    }]
-  };
+// Extrahieren der Labels und Werte aus dem Genre-Datensatz
+var genreLabels = genreArray.map(item => item.key);
+var genreValues = genreArray.map(item => item.value);
 
-  var genreData ={
-  labels: ["Test"],
-    datasets:[{
-      data: genre,
-      backgroundColor: "rgba(0, 203, 6, 0.8)"
-    }]
-  };
+// Definieren der Farben für die Bar-Chart
+var genreColors = genreArray.map((item, index) => {
+  // Du kannst hier jede Logik verwenden, um Farben dynamisch zu generieren
+  var colors = ["rgba(0, 203, 6, 0.8)", "rgba(143, 43, 178, 0.8)", "rgba(255, 99, 132, 0.8)", "rgba(54, 162, 235, 0.8)", "rgba(255, 206, 86, 0.8)", "rgba(75, 192, 192, 0.8)", "rgba(153, 102, 255, 0.8)"];
+  return colors[index % colors.length];
+});
 
-  // Optionen für das Pie Chart
-  var pieOptions = {
-    responsive: true
-  };
+// Definieren der Daten für die Pie-Chart
+var lendedData = {
+  labels: ["Zurückgegeben", "Nicht zurückgegeben"],
+  datasets: [{
+    data: [returnedCount, notReturnedCount],
+    backgroundColor: ["rgba(0, 203, 6, 0.8)", "rgba(143, 43, 178, 0.8)"],
+  }]
+};
 
-  // Erstelle die Pie Charts
-  var lendStatsChart1 = new Chart(document.getElementById('lendStatsChart1'), {
-    type: 'pie',
-    data: lendedData,
-    options: pieOptions
-  });
+// Definieren der Daten für die Bar-Chart
+var genreData = {
+  labels: genreLabels,
+  datasets: [{
+    data: genreValues,
+    backgroundColor: genreColors // Verwenden der dynamischen Farben
+  }]
+};
 
-  var lendStatsChart2 = new Chart(document.getElementById('lendStatsChart2'), {
-    type: 'bar',
-    data: genreData,
-    options: pieOptions
-  });
+// Optionen für die Charts
+var pieOptions = {
+  responsive: true
+};
 
-  var lendStatsChart3 = new Chart(document.getElementById('lendStatsChart3'), {
-    type: 'pie',
-    data: lendedData,
-    options: pieOptions
-  });
+// Erstellen der Pie-Chart für die Rückgabe-Daten
+var lendStatsChart1 = new Chart(document.getElementById('lendStatsChart1'), {
+  type: 'pie',
+  data: lendedData,
+  options: pieOptions
+});
+
+// Erstellen der Bar-Chart für die Genre-Daten
+var lendStatsChart2 = new Chart(document.getElementById('lendStatsChart2'), {
+  type: 'bar',
+  data: genreData,
+  options: pieOptions
+});
+
+
+
+
 </script>
 </body>
 </html>

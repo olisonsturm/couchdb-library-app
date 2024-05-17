@@ -98,11 +98,16 @@ public class BookService {
         return dbClient.view("titleToId/titleToId").query(JsonObject.class);
     }
 
+    public List<JsonObject> groupGenres(){
+        return  dbClient.view("genreSearch/groupGenre").group(true).query(JsonObject.class);
+
+    }
 
     public static void main(String[] args) {
-        List<Book> books = dbClient.view("allBooks/allBooks").includeDocs(true).query(Book.class);
-        for(Book b : books){
-            System.out.println(b.getTitle());
+        List<JsonObject> jsonObjects = dbClient.view("genreSearch/groupGenre").group(true).query(JsonObject.class);
+        for(JsonObject b : jsonObjects){
+            System.out.println(b.get("key"));
+            System.out.println(b.get("value"));
         }
     }
 }

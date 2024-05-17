@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -37,7 +38,8 @@ public class StatistikController {
     public String lendStats(Model model){
         model.addAttribute("returnedCount",lendService.getFilteredLendCount(true));
         model.addAttribute("notReturnedCount",lendService.getFilteredLendCount(false));
-        model.addAttribute("genreData", 1);
+        model.addAttribute("genreData", bookService.groupGenres());
+        System.out.println(bookService.groupGenres());
         return "statistic.html";
     }
 }
