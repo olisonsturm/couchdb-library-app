@@ -21,10 +21,6 @@
   <button type="submit">Search</button>
 </form>
 
-<!-- Canvas für das Pie Chart -->
-<div class="container mt-5">
-  <canvas id="lendStatsChart" style="width: 50%; height: 50%;"></canvas>
-</div>
 
 <div th:insert="~{fragments/lends.html :: lends}"></div>
 
@@ -36,35 +32,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script>
-  // Daten für das Pie Chart
-  var returnedCount = parseInt(document.getElementById('returnedCount').innerText);
-  var notReturnedCount = parseInt(document.getElementById('notReturnedCount').innerText);
 
-  var lendedData = {
-    labels: ["Zurückgegeben", "Nicht zurückgegeben"],
-    datasets: [{
-      data: [returnedCount, notReturnedCount],
-      backgroundColor: ["#36A2EB", "#FF6384"]
-    }]
-  };
-
-  // Optionen für das Pie Chart
-  var pieOptions = {
-    responsive: true
-  };
-
-  // Erstelle das Pie Chart
-  var lendStatsChart = new Chart(document.getElementById('lendStatsChart'), {
-    type: 'pie',
-    data: lendedData,
-    options: pieOptions
-  });
-
-  // Ändere die Größe des Canvas-Elements auf die Hälfte
-  var canvas = document.getElementById('lendStatsChart');
-  canvas.style.width = '50%';
-  canvas.style.height = '50%';
-</script>
 </body>
 </html>
