@@ -5,63 +5,78 @@
   <title>LendStats</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link th:href="@{styles.css}" rel="stylesheet" type="text/css"/>
-<<<<<<< Updated upstream
-=======
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
->>>>>>> Stashed changes
+  <style>
+    .canvas-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+    }
+    .canvas-container canvas {
+      width: 30%;
+      height: auto;
+      border: 1px solid black;
+    }
+  </style>
 </head>
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
-<h1>Hier Kommen die returnStats rein</h1>
+<h1>Bib Statistik</h1>
 
-<form class="d-flex justify-content-center" action="/searchLend" method="post">
-  <label for="lended">Zurückgegeben: </label>
-  <select id="lended" name="lended">
-    <option value="true">True</option>
-    <option value="false">False</option>
-  </select><br>
-  <button type="submit">Search</button>
-</form>
-
-<<<<<<< Updated upstream
-
-<div th:insert="~{fragments/lends.html :: lends}"></div>
-
-
-
-
-=======
-<!-- Canvas für das Pie Chart -->
 <div class="container mt-5">
-  <canvas id="lendStatsChart" style="width: 50%; height: 50%;"></canvas>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <h5>Chart 1</h5>
+      <div class="canvas-container">
+        <canvas id="lendStatsChart1"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <h5>Chart 2</h5>
+      <div class="canvas-container">
+        <canvas id="lendStatsChart2"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <h5>Chart 3</h5>
+      <div class="canvas-container">
+        <canvas id="lendStatsChart3"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div th:insert="~{fragments/lends.html :: lends}"></div>
 
 <div id="returnedCount" th:text="${returnedCount}" style="display: none;">1</div>
 <div id="notReturnedCount" th:text="${notReturnedCount}" style="display: none;">2</div>
->>>>>>> Stashed changes
+
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<<<<<<< Updated upstream
-</body>
-</html>
-=======
 <script>
-  // Daten für das Pie Chart
+
   var returnedCount = parseInt(document.getElementById('returnedCount').innerText);
   var notReturnedCount = parseInt(document.getElementById('notReturnedCount').innerText);
+
+  var genre = /*[[${genreData}]]*/  'default';
 
   var lendedData = {
     labels: ["Zurückgegeben", "Nicht zurückgegeben"],
     datasets: [{
       data: [returnedCount, notReturnedCount],
-      backgroundColor: ["#36A2EB", "#FF6384"]
+      backgroundColor: ["rgba(0, 203, 6, 0.8)", "rgba(143, 43, 178, 0.8)"],
+    }]
+  };
+
+  var genreData ={
+  labels: ["Test"],
+    datasets:[{
+      data: genre,
+      backgroundColor: "rgba(0, 203, 6, 0.8)"
     }]
   };
 
@@ -70,18 +85,24 @@
     responsive: true
   };
 
-  // Erstelle das Pie Chart
-  var lendStatsChart = new Chart(document.getElementById('lendStatsChart'), {
+  // Erstelle die Pie Charts
+  var lendStatsChart1 = new Chart(document.getElementById('lendStatsChart1'), {
     type: 'pie',
     data: lendedData,
     options: pieOptions
   });
 
-  // Ändere die Größe des Canvas-Elements auf die Hälfte
-  var canvas = document.getElementById('lendStatsChart');
-  canvas.style.width = '50%';
-  canvas.style.height = '50%';
+  var lendStatsChart2 = new Chart(document.getElementById('lendStatsChart2'), {
+    type: 'bar',
+    data: genreData,
+    options: pieOptions
+  });
+
+  var lendStatsChart3 = new Chart(document.getElementById('lendStatsChart3'), {
+    type: 'pie',
+    data: lendedData,
+    options: pieOptions
+  });
 </script>
 </body>
 </html>
->>>>>>> Stashed changes
