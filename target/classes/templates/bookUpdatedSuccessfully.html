@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,20 +10,9 @@
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
-<div class="container mt-5">
-<h1>Hier Kann das Buch zurückgegeben werden</h1>
-
-<form action="/returnLending" method="post" class="from-group">
-    <label for="value">Lend:</label><br>
-    <select id="value" name="value" class="form-control">
-        <option th:each="lend : ${lends}" th:value="${lend.get('value')}" th:text="${lend.get('key')}"></option>
-    </select>
-        <br>
-    <button type="submit" class="btn btn-primary">Diese Ausleihe zurückgeben</button>
-</form>
+<h1>Buch geändert</h1>
 
 
-</div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

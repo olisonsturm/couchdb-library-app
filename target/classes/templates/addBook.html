@@ -9,45 +9,47 @@
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
-<h1>Neues Buch erstellen</h1>
+<div class="container mt-5">
+    <h1>Neues Buch erstellen</h1>
+    <form class ="form-group" action="/addBook" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" class="form-control"><br>
 
-<form action="/addBook" method="post">
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title"><br>
+        <label for="authors">Authors (semicolon-separated):</label><br>
+        <input type="text" id="authors" name="authors" class="form-control"><br>
 
-    <label for="authors">Authors (semicolon-separated):</label><br>
-    <input type="text" id="authors" name="authors"><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn" class="form-control"><br>
 
-    <label for="isbn">ISBN:</label><br>
-    <input type="text" id="isbn" name="isbn"><br>
+        <label for="publisher">Publisher:</label><br>
+        <input type="text" id="publisher" name="publisher" class="form-control"><br>
 
-    <label for="publisher">Publisher:</label><br>
-    <input type="text" id="publisher" name="publisher"><br>
+        <label for="publicationYear">Publication Year:</label><br>
+        <input type="number" id="publicationYear" name="publicationYear" class="form-control"><br>
 
-    <label for="publicationYear">Publication Year:</label><br>
-    <input type="number" id="publicationYear" name="publicationYear"><br>
+        <label for="genre">Genre:</label><br>
 
-    <label for="genre">Genre:</label><br>
-    <select id="genre" name="genre">
-        <option value=""></option>
-        <option value="Horror">Horror</option>
-        <option value="IT">IT</option>
-        <option value="Drama">Drama</option>
-        <option value="Roman">Roman</option>
-        <option value="Comic">Comic</option>
-        <option value="Comedy">Comedy</option>
-    </select><br>
+        <select id="genre" name="genre" class="form-control">
+            <option selected>Genre auswählen</option>
+            <option value="Horror">Horror</option>
+            <option value="IT">IT</option>
+            <option value="Drama">Drama</option>
+            <option value="Roman">Roman</option>
+            <option value="Comic">Comic</option>
+            <option value="Comedy">Comedy</option>
+        </select>
+        <br>
 
-    <label for="rating">Rating:</label><br>
-    <input type="number" id="rating" name="rating" step="0.1" min="0" max="10"><br>
+        <label for="rating">Rating:</label><br>
+        <input type="number" id="rating" name="rating" step="0.1" min="0" max="10" class="form-control"><br>
 
-    <label for="amount">Amount:</label><br>
-    <input type="number" id="amount" name="amount"><br>
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" class="form-control"><br>
 
-    <button type="submit">Add Book</button>
-</form>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

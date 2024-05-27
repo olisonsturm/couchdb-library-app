@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LendService {
@@ -92,7 +93,16 @@ public class LendService {
         return jsons.get(0).get("value").getAsInt();
     }
 
+    public List<JsonObject> mostLendedBooks() {
+        List<JsonObject> books = lendClient.view("mostLendedBook/mostLendedBook")
+                .group(true)
+                .query(JsonObject.class);
 
+        return books.stream()
+                .sorted((a, b) -> Integer.compare(b.get("value").getAsInt(), a.get("value").getAsInt()))
+                .limit(3)
+                .collect(Collectors.toList());
+    }
     public static void main(String[] args) {
         List<JsonObject> jsons = lendClient.view("allLends/allFilteredCount").key(true).query(JsonObject.class);
 

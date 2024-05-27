@@ -6,6 +6,8 @@ import org.lightcouch.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BookService {
 
@@ -94,12 +96,18 @@ public class BookService {
         max += 1;
         return Integer.toString(max);
     }
+
     public List<JsonObject> getAllTitlesAndAuthors(){
         return dbClient.view("titleToId/titleToId").query(JsonObject.class);
     }
 
     public List<JsonObject> groupGenres(){
         return  dbClient.view("genreSearch/groupGenre").group(true).query(JsonObject.class);
+
+    }
+
+    public List<JsonObject> groupYear(){
+        return  dbClient.view("groupPublicationYear/groupPublicationYear").group(true).query(JsonObject.class);
 
     }
 

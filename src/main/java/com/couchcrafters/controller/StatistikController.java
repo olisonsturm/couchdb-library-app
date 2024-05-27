@@ -39,7 +39,10 @@ public class StatistikController {
         model.addAttribute("returnedCount",lendService.getFilteredLendCount(true));
         model.addAttribute("notReturnedCount",lendService.getFilteredLendCount(false));
         model.addAttribute("genreData", bookService.groupGenres());
-        System.out.println(bookService.groupGenres());
-        return "statistic.html";
+        model.addAttribute("groupYear", bookService.groupYear());
+        model.addAttribute("mostLendedBook", lendService.mostLendedBooks());
+
+
+        return "statistic2.html";
     }
 }

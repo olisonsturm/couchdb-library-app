@@ -36,7 +36,6 @@ public class LendController {
     @GetMapping("/createLend")
     public String createLend(Model model){
 
-
         model.addAttribute("books", bookService.getAllTitlesAndAuthors());
         model.addAttribute("customers", customerService.getAllNamesAndEmails());
         model.addAttribute("lend", new Lending());

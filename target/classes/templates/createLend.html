@@ -11,35 +11,33 @@
 
 <div th:replace="~{fragments/header.html :: header}"></div>
 
+<div class="container mt-5">
 <h1> Neue Ausleihe anlegen</h1>
-<form action="/createLend" method="post">
+<form action="/createLend" method="post" class="from-group">
 
     <label for="book_id">Book:</label><br>
-    <select id="book_id" name="book_id">
-        <option th:each="book : ${books}" th:value="${book.get('value')}" th:text="${book.get('key')}"></option>
+    <select id="book_id" name="book_id" class="form-control">
+        <option th:each="book : ${books}" th:value="${book.get('value')}" th:text="${book.get('key')}" ></option>
     </select><br>
 
 
     <label for="customer_id">Customer:</label><br>
-    <select id="customer_id" name="customer_id">
+    <select id="customer_id" name="customer_id"  class="form-control">
         <option th:each="customer : ${customers}" th:value="${customer.get('value')}" th:text="${customer.get('key')}"></option>
     </select><br>
     <label for="lendDate">Lend Date:</label><br>
-    <input type="text" id="lendDate" name="lendDate"><br>
+    <input type="text" id="lendDate" name="lendDate" class="form-control"><br>
 
     <input type="hidden" id="returnDate" name="returnDate" value ="31.12.9999"><br>
 
-    <label for="returnedBoolean">Returned:</label><br>
-    <select id="returnedBoolean" name="returnedBoolean">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
+    <input type="hidden" id="returnedBoolean" name="returnedBoolean" value ="false"><br>
 
-    </select><br><br>
+    <br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="btn btn-primary">
 </form>
 
-
+</div>
 
 
 
