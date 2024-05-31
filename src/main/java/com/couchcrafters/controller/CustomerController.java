@@ -42,4 +42,25 @@ public class CustomerController {
         return "addCustomer.html";
     }
 
+    // ab hier die Kunde ändern Funktionalität
+
+    @GetMapping(value= { "/updateCustomer"})
+    public String updateCustomer(Model model){
+        List <Customer> customer = customerService.getAllCustomers();
+        model.addAttribute("customers",customer);
+        return "updateCustomer.html";
+    }
+
+    @PostMapping (value = {"/updateCustomer"})
+    public String updateCustomer(@RequestParam("_id") String customerId,
+                             @RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName,
+                             @RequestParam("email") String email,
+                             @RequestParam("phone") String phone,
+                             @RequestParam("address") String address){
+        System.out.println("Selected CustomerId: " + customerId);
+        customerService.updateCustomer(customerId, firstName, lastName, email, phone, address);
+        return "redirect:/customerUpdatedSuccessfully";
+    }
+
 }

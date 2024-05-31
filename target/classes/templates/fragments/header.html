@@ -21,14 +21,14 @@
                     <form action="#" th:action="@{/addBook}" th:method="get">
                         <button class="text-white btn btn-custom ml-1" type="submit">Buch anlegen </button>
                     </form>
-<<<<<<< Updated upstream
                     <form action="#" th:action="@{/updateBook}" th:method="get">
                         <button class="text-white btn btn-custom ml-1" type="submit">Buch ändern </button>
                     </form>
-=======
->>>>>>> Stashed changes
                     <form action="#" th:action="@{/addCustomer}" th:method="get">
                         <button class=" text-white btn btn-custom ml-1" type="submit">Kunde anlegen</button>
+                    </form>
+                    <form action="#" th:action="@{/updateCustomer}" th:method="get">
+                        <button class="text-white btn btn-custom ml-1" type="submit">Kunde ändern </button>
                     </form>
                     <form action="#" th:action="@{/createLend}" th:method="get">
                         <button class="text-white btn btn-custom ml-1" type="submit">Ausleihe anlegen</button>
@@ -38,7 +38,10 @@
                     </form>
                     <form action="#" th:action="@{/lendStats}" th:method="get">
                     <button class="text-white btn btn-custom ml-1" type="submit">Ausleih Statistiken</button>
-                </form>
+                    </form>
+                    <form action="#" th:action="@{/statistic}" th:method="get">
+                        <button class="text-white btn btn-custom ml-1" type="submit">Statistiken</button>
+                    </form>
                 </div>
             </div>
             <div class="col">

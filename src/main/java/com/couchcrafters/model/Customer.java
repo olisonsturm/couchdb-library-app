@@ -10,14 +10,33 @@ public class Customer {
 
     private String _id;
 
+    public String get_rev() {
+        return _rev;
+    }
+
+    public void set_rev(String _rev) {
+        this._rev = _rev;
+    }
+
+    private String _rev;
+
     // attributs
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private Address address;
+    private String stringaddress;
 
     public Customer() {}
+
+    public String getStringaddress() {
+        return stringaddress;
+    }
+
+    public void setStringaddress(String stringaddress) {
+        this.stringaddress = stringaddress;
+    }
 
     public Customer(String id, String firstName, String lastName, String email, String phone, Address address) {
         this._id = id;
@@ -26,6 +45,15 @@ public class Customer {
         this.email = email;
         this.phone = phone;
         this.address = new Address(address.street,address.city,address.postCode);
+    }
+
+    public Customer(String id, String firstName, String lastName, String email, String phone, String address) {
+        this._id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.stringaddress = address;
     }
 
     public String getId() {
