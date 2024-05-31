@@ -55,19 +55,7 @@
       <canvas id="lendStatsChart4"></canvas>
     </div>
   </div>
-  <div>
-    <h5>Gerne Verteilung</h5>
-    <div>
-      <canvas id="lendStatsChart5"></canvas>
-    </div>
-  </div>
-  <div>
-    <h5>Entstehungsjahr Verteilung</h5>
-    <div>
-      <canvas id="lendStatsChart6"></canvas>
-    </div>
-  </div>
-</div>
+
 
 
 
@@ -132,6 +120,7 @@
     var genreData = {
       labels: genreLabels,
       datasets: [{
+       label: 'Genre Verteilung',
         data: genreValues,
         backgroundColor: genreColors // Verwenden der dynamischen Farben
       }]
@@ -140,7 +129,7 @@
     var yearData = {
       labels: yearLabels,
       datasets: [{
-        label: 'Test',
+        label: 'Jahres verteilung',
         data: yearValues,
         backgroundColor: genreColors // Verwenden der dynamischen Farben
       }]
@@ -150,6 +139,7 @@
       labels: mostLendedLabel,
       datasets: [{
         data: mostLendedValues,
+         label: 'Meist ausgeliehenes Buch',
         backgroundColor: genreColors // Verwenden der dynamischen Farben
       }]
     };
