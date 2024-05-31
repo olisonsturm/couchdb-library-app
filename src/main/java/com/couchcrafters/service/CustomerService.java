@@ -9,6 +9,8 @@ import org.lightcouch.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ResourceBundle;
+
 @Service
 public class CustomerService {
 
@@ -43,6 +45,38 @@ public class CustomerService {
     }
     public List<JsonObject> getAllNamesAndEmails(){
         return dbClient.view("nameToId/nameToId").query(JsonObject.class);
+    }
+
+    // Kunde ändern
+
+    public void updateCustomer(String CustomerId, String newFirstName, String newLastName, String newEmail, String newPhone, String newAddress) {
+
+        Customer customerToBeUpdated = dbClient.find(Customer.class, CustomerId);
+
+        if (newFirstName != null && !newFirstName.isEmpty()) {
+            customerToBeUpdated.setFirstName(newFirstName);
+        }
+        if (newLastName != null && newLastName.isEmpty()) {
+            customerToBeUpdated.setLastName(newLastName);
+        }
+        if (newEmail != null && !newEmail.isEmpty()) {
+            customerToBeUpdated.setEmail(newEmail);
+        }
+        if (newPhone != null && !newPhone.isEmpty()) {
+            customerToBeUpdated.setPhone(newPhone);
+        }
+        if (newAddress != null) {
+            customerToBeUpdated.setStringaddress(newAddress);
+        }
+
+        System.out.println(customerToBeUpdated.toString());
+
+        Response response = dbClient.update(customerToBeUpdated);
+        if (response.getError() == null) {
+            System.out.println("Kundendaten wurden geändert. ID: " + response.getId());
+        } else {
+            System.err.println("Fehler beim Ändern des Kunden: " + response.getError());
+        }
     }
 
 

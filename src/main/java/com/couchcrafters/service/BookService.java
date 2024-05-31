@@ -36,10 +36,10 @@ public class BookService {
 
 
     public void updateBook(String bookId, String newTitle, String[] newAuthors, String newPublisher, String newISBN, String genre, double rating) {
-        // Find the book by its ID
+
         Book bookToBeUpdated = dbClient.find(Book.class, bookId);
 
-        // Update the book's properties with the new values
+
         if (newTitle != null && !newTitle.isEmpty()) {
             bookToBeUpdated.setTitle(newTitle);
         }
