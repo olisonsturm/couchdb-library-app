@@ -49,9 +49,10 @@ public class CustomerService {
 
     // Kunde ändern
 
-    public void updateCustomer(String CustomerId, String newFirstName, String newLastName, String newEmail, String newPhone, String newAddress) {
+    public void updateCustomer(String CustomerId, String newFirstName, String newLastName, String newEmail, String newPhone, String street, String city, String housenumber ,String postcode) {
 
         Customer customerToBeUpdated = dbClient.find(Customer.class, CustomerId);
+        Address address = customerToBeUpdated.getAddress();
 
         if (newFirstName != null && !newFirstName.isEmpty()) {
             customerToBeUpdated.setFirstName(newFirstName);
@@ -65,11 +66,21 @@ public class CustomerService {
         if (newPhone != null && !newPhone.isEmpty()) {
             customerToBeUpdated.setPhone(newPhone);
         }
-        if (newAddress != null) {
-            customerToBeUpdated.setStringaddress(newAddress);
+        if (street != null) {
+            address.setStreet(street);
+        }
+        if (city != null) {
+            address.setCity(city);
+        }
+        if (housenumber != null) {
+            address.setHousenumber(housenumber);
+        }
+        if (postcode != null) {
+            address.setPostCode(postcode);
         }
 
-        System.out.println(customerToBeUpdated.toString());
+
+        customerToBeUpdated.setAddress(address);
 
         Response response = dbClient.update(customerToBeUpdated);
         if (response.getError() == null) {

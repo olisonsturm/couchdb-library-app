@@ -26,17 +26,11 @@ public class Customer {
     private String email;
     private String phone;
     private Address address;
-    private String stringaddress;
+
 
     public Customer() {}
 
-    public String getStringaddress() {
-        return stringaddress;
-    }
 
-    public void setStringaddress(String stringaddress) {
-        this.stringaddress = stringaddress;
-    }
 
     public Customer(String id, String firstName, String lastName, String email, String phone, Address address) {
         this._id = id;
@@ -44,17 +38,10 @@ public class Customer {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.address = new Address(address.street,address.city,address.postCode);
+        this.address = new Address(address.street,address.city,address.postCode,address.housenumber);
     }
 
-    public Customer(String id, String firstName, String lastName, String email, String phone, String address) {
-        this._id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.stringaddress = address;
-    }
+
 
     public String getId() {
         return _id;

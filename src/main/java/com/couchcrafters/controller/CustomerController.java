@@ -57,10 +57,16 @@ public class CustomerController {
                              @RequestParam("lastName") String lastName,
                              @RequestParam("email") String email,
                              @RequestParam("phone") String phone,
-                             @RequestParam("address") String address){
+                             @RequestParam("street") String street,
+                             @RequestParam("city") String city,
+                             @RequestParam("housenumber") String housenumber,
+                             @RequestParam("postcode") String postcode){
         System.out.println("Selected CustomerId: " + customerId);
-        customerService.updateCustomer(customerId, firstName, lastName, email, phone, address);
+        customerService.updateCustomer(customerId, firstName, lastName, email, phone, street,city, housenumber , postcode);
         return "redirect:/customerUpdatedSuccessfully";
     }
-
+    @GetMapping(value = {"/customerUpdatedSuccessfully"})
+    public String customerUpdatedSuccessfully(){
+        return "customerUpdatedSuccessfully.html";
+    }
 }
