@@ -18,8 +18,8 @@
         <div class="card text-center mb-4 box-shadow">
           <div class="card-body">
             <h4 class="card-title" th:text="${lend._id}">Buch</h4>
-            <p class="card-text" th:text="'Ausleiher ' + ${lend.customer_id}">Test</p>
-            <p class="card-text" th:text="'Buch: ' + ${lend.book_id}">Test</p>
+            <p class="card-text" th:text="'Ausleiher ' + ${lend.customerName} + ' ID: ' + ${lend.customer_id}">Test</p>
+            <p class="card-text" th:text="'Buch: ' + ${lend.bookTitle}+ ' ID: '  + ${lend.book_id}">Test</p>
             <p class="card-text" th:text="'Zurückgegeben: ' + ${lend.returnedBoolean}"></p>
             <div class="d-flex justify-content-between align-items-center">
               <small class="text-muted" th:text="${lend.lendDate} + ' Date'"></small>

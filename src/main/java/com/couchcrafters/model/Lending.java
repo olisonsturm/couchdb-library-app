@@ -14,6 +14,10 @@ public class Lending {
     private String book_id;
     private String customer_id;
 
+    //Namen für Bessere visualisierung
+    private String bookTitle;
+    private String customerName;
+
     // attributs
     private String lendDate;
     private String returnDate;
@@ -79,6 +83,22 @@ public class Lending {
         this.lendDate = lendDate;
         this.returnDate = returnDate;
         this.returnedBoolean = returnedBoolean;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     @Override

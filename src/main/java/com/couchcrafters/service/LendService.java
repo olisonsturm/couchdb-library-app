@@ -81,12 +81,29 @@ public class LendService {
     }
 
     public List<Lending> getAllLends(){
-        return lendClient.view("allLends/allLends").includeDocs(true).query(Lending.class);
+        List<Lending> lends = lendClient.view("allLends/allLends").includeDocs(true).query(Lending.class);
+        for(Lending l : lends){
+            System.out.println(l.getBook_id());
+            String title = bookClient.view("idToTitle/idToTitle").key(l.getBook_id()).query(JsonObject.class).get(0).get("value").toString();
+            String name = customerClient.view("idToName/idToName").key(l.getCustomer_id()).query(JsonObject.class).get(0).get("value").toString();
+            l.setBookTitle(title);
+            l.setCustomerName(name);
+        }
+        return lends;
     }
 
     public List<Lending> getALlFilteredLends(boolean lended){
-        return lendClient.view("allLends/allBooleanFilter").key(lended).includeDocs(true).query(Lending.class);
+        List<Lending> lends = lendClient.view("allLends/allBooleanFilter").key(lended).includeDocs(true).query(Lending.class);
+        for(Lending l : lends){
+            System.out.println(l.getBook_id());
+            String title = bookClient.view("idToTitle/idToTitle").key(l.getBook_id()).query(JsonObject.class).get(0).get("value").toString();
+            String name = customerClient.view("idToName/idToName").key(l.getCustomer_id()).query(JsonObject.class).get(0).get("value").toString();
+            l.setBookTitle(title);
+            l.setCustomerName(name);
+        }
+        return lends;
     }
+
     public int getFilteredLendCount(boolean lended){
 
         List<JsonObject> jsons = lendClient.view("allLends/allFilteredCount").key(lended).query(JsonObject.class);
@@ -103,9 +120,17 @@ public class LendService {
                 .limit(3)
                 .collect(Collectors.toList());
     }
-    public static void main(String[] args) {
-        List<JsonObject> jsons = lendClient.view("allLends/allFilteredCount").key(true).query(JsonObject.class);
 
+    public static void main(String[] args) {
+        List<Lending> lends = lendClient.view("allLends/allLends").includeDocs(true).query(Lending.class);
+        for(Lending l : lends){
+            System.out.println(l.getBook_id());
+            String title = bookClient.view("idToTitle/idToTitle").key(l.getBook_id()).query(JsonObject.class).get(0).get("value").toString();
+            String name = customerClient.view("idToName/idToName").key(l.getCustomer_id()).query(JsonObject.class).get(0).get("value").toString();
+            l.setBookTitle(title);
+            l.setCustomerName(name);
+        }
     }
+
 }
 
