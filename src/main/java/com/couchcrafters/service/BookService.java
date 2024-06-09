@@ -14,6 +14,7 @@ public class BookService {
 
 
     private static CouchDbClient dbClient = new CouchDbClient("couchdb_books.properties");
+
     public  void saveBook(Book book) {
         //Authoren spliten
         book.setAuthors(book.getAuthors()[0].split(";"));
@@ -95,6 +96,7 @@ public class BookService {
         System.out.println(max);
         max += 1;
         return Integer.toString(max);
+
     }
 
     public List<JsonObject> getAllTitlesAndAuthors(){

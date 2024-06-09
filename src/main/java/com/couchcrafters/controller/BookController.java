@@ -25,7 +25,6 @@ public class BookController {
     @GetMapping(value = {"/"})
     public String index(Model model) {
         List<Book> books = bookService.getAllBooks();
-        Arrays.toString(books.get(1).getAuthors());
         model.addAttribute("books",books);
         return "index.html";
     }
