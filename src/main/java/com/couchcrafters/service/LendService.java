@@ -53,7 +53,7 @@ public class LendService {
         List<JsonObject> lendings = lendClient.view("countBooksForId/countBooksForIdThatAreFalse").key(id).query(JsonObject.class);
 
         //entweder es gibt keine Ausleihen dazu, oder er Benutzt die anzahl der Ausgeliehenen bücher und die amount
-        if((lendings.size() == 0 )|| (books.get(0).get("value").getAsInt() < lendings.get(0).get("value").getAsInt())){
+        if((lendings.size() == 0 )|| (books.get(0).get("value").getAsInt() > lendings.get(0).get("value").getAsInt())){
             return  true;
         }else {
             return false;
